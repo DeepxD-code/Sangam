@@ -1,0 +1,30 @@
+# =============================================================
+# SANGAM docker-compose.dev.yml — Development Overrides
+# Usage: docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+# =============================================================
+
+version: "3.9"
+
+services:
+  app:
+    # Mount source for live editing (no rebuild needed)
+    volumes:
+      - ./backend:/app/backend
+      - ./database:/app/database
+      # Exclude host node_modules (use container's)
+      - /app/node_modules
+
+    environment:
+      NODE_ENV:    development
+      LOG_LEVEL:   debug
+      CORS_ORIGIN: "*"
+      # Dev-mode: allow missing AUDIT_ENCRYPTION_KEY (uses insecure fallback)
+      AUDIT_ENCRYPTION_KEY: ""
+
+    # Hot reload with nodemon
+    command: ["node", "--watch", "backend/src/server.js"]
+
+  db:
+    ports:
+      # Expose DB port to host in dev (for DB clients like psql, TablePlus)
+      - "5432:5432"

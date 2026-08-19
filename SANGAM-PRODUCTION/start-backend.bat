@@ -1,0 +1,11 @@
+@echo off
+set DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres
+set JWT_SECRET=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+set PASSWORD_PEPPER=bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+set JWT_REFRESH_SECRET=cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+set AUDIT_ENCRYPTION_KEY=af0f3444768c1eaa56b08c4ff7ae9d84edde84e1a76d2cce7e948926b8e33826
+set PORT=3000
+set NODE_ENV=development
+set SEED_DEMO_DATA=true
+cd /d E:\Potential-gold\Sangam\SANGAM-PRODUCTION
+node backend/src/server.js
