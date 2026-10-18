@@ -94,7 +94,8 @@
     "pg": "^8.21.0"
   },
   "devDependencies": {
-    "pg-mem": "^3.0.14"
+    "pg-mem": "^3.0.14",
+    "webpack-dev-server": "3.11.11"
   },
   "overrides": {
     "@mikro-orm/core": "6.6.10",
