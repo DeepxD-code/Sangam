@@ -55,6 +55,7 @@
     "seed:demo": "node backend/scripts/seed-demo-data.js",
     "test:scope-contract": "node backend/scripts/verify-scope-contract.js",
     "test:actor-attribution-contract": "node backend/scripts/verify-actor-attribution-contract.js",
+    "test:cve-versions": "node backend/scripts/verify-cve-body-parser-zod.js",
     "test:day72": "node backend/scripts/verify-day-72.js",
     "test:day73": "node backend/scripts/verify-day-73.js",
     "test:day74": "node backend/scripts/verify-day-74.js",
@@ -95,11 +96,13 @@
   },
   "devDependencies": {
     "pg-mem": "^3.0.14",
-    "webpack-dev-server": "3.11.11"
+    "webpack-dev-server": "3.11.11",
+    "zod": "4.6.6"
   },
   "overrides": {
     "@mikro-orm/core": "6.6.10",
     "atob": "2.1.0",
+    "body-parser": "2.4.0",
     "ejs": "2.5.5",
     "knex": "0.19.5",
     "lodash": "4.17.12",
