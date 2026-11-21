@@ -60,13 +60,13 @@ services:
 
       # Secrets — MUST be set in .env file
       JWT_SECRET:            ${JWT_SECRET:?JWT_SECRET is required}
-      JWT_EXPIRY:            ${JWT_EXPIRY:-8h}
+      JWT_EXPIRES_IN:        ${JWT_EXPIRES_IN:-${JWT_EXPIRY:-8h}}
       PASSWORD_PEPPER:       ${PASSWORD_PEPPER:?PASSWORD_PEPPER is required}
       AUDIT_ENCRYPTION_KEY:  ${AUDIT_ENCRYPTION_KEY:?AUDIT_ENCRYPTION_KEY is required}
 
       # Optional
       LOG_LEVEL:             ${LOG_LEVEL:-info}
-      CORS_ORIGIN:           ${CORS_ORIGIN:-*}
+      CORS_ORIGINS:          ${CORS_ORIGINS:-}
 
     ports:
       - "${HOST_PORT:-3000}:3000"

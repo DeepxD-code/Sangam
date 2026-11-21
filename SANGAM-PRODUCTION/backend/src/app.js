@@ -126,8 +126,15 @@ function createApp(db, services = {}, options = {}) {
     }
   }));
 
+  // Explicit allowlist: CORS_ORIGINS (comma-separated; CORS_ORIGIN accepted as
+  // legacy alias). Unset -> localhost dev origins only. Never a wildcard.
+  const corsList = (process.env.CORS_ORIGINS || process.env.CORS_ORIGIN || '')
+    .split(',').map(s => s.trim()).filter(s => s && s !== '*');
+  const corsAllowed = corsList.length
+    ? corsList
+    : [/^https?:\/\/(localhost|127\.0\.0\.1|\[::1\])(:\d+)?$/];
   app.use(cors({
-    origin: process.env.CORS_ORIGIN || '*',
+    origin: corsAllowed,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
   }));
