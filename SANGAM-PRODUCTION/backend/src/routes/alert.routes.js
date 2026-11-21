@@ -8,7 +8,7 @@ const AuthMiddleware         = require('../middleware/auth.middleware');
 /**
  * SANGAM Alert Escalation Routes  (Day 30 / Day 31 singleton-wired)
  *
- *   POST  /alerts/scan              → run violation scan        [reports:read]
+ *   POST  /alerts/scan              → run violation scan        [supply:write]
  *   GET   /alerts                   → list alerts in scope      [reports:read]
  *   GET   /alerts/active            → active alerts only        [reports:read]
  *   GET   /alerts/stats             → alert statistics          [reports:read]
@@ -63,7 +63,7 @@ function createAlertRoutes(db, sharedAudit = null, sharedServices = {}) {
 
   // POST /alerts/scan
   router.post('/scan',
-    auth.authenticate(), auth.requirePermission('reports:read'),
+    auth.authenticate(), auth.requirePermission('supply:write'),
     async (req, res) => {
       try {
         const scope  = await scopeFor(req.user);

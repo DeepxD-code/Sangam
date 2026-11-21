@@ -3,6 +3,9 @@
 const bcrypt = require('bcrypt');
 const AuthMiddleware = require('../middleware/auth.middleware');
 
+if (process.env.NODE_ENV === 'production' && !process.env.PASSWORD_PEPPER) {
+  throw new Error('PASSWORD_PEPPER must be set when NODE_ENV=production');
+}
 const PEPPER = process.env.PASSWORD_PEPPER || 'sangam-pepper-dev-CHANGE-IN-PRODUCTION';
 
 /**

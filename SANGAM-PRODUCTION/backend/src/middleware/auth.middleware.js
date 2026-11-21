@@ -4,8 +4,11 @@ const jwt     = require('jsonwebtoken');
 const crypto  = require('crypto');
 const RBACService = require('../services/rbac.service');
 
+if (process.env.NODE_ENV === 'production' && !process.env.JWT_SECRET) {
+  throw new Error('JWT_SECRET must be set when NODE_ENV=production');
+}
 const JWT_SECRET = process.env.JWT_SECRET || 'sangam-dev-secret-CHANGE-IN-PRODUCTION';
-const JWT_EXPIRY  = process.env.JWT_EXPIRY  || '8h';   // One operational shift
+const JWT_EXPIRY  = process.env.JWT_EXPIRES_IN || process.env.JWT_EXPIRY || '8h';   // One operational shift
 const REF_EXPIRY  = process.env.REF_EXPIRY  || '30d';  // One month rotation
 
 /**
